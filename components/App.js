@@ -1,5 +1,6 @@
 import React from 'react'
 
+import Card from './Card'
 import Header from './Header'
 
 class App extends React.Component {
@@ -21,6 +22,11 @@ class App extends React.Component {
       <div>
         <Header />
         <div className='p2 container'>
+          <div className='clearfix mx1'>
+            <div className='mb1 col col-6 md-col-4 px1'>
+              <Card {...this.props} />
+            </div>
+          </div>
           {deck.map((d, i) => (
             <div key={i} className='h5'>{i}. {d.join(', ')}</div>
           ))}
