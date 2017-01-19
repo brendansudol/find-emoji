@@ -16,7 +16,7 @@ const card_config = {
   ],
 }
 
-const Card = ({ card }) => {
+const Card = ({ card, category }) => {
   const { size, positions } = card_config
   shuffle(card)
 
@@ -33,7 +33,7 @@ const Card = ({ card }) => {
           <g key={i} transform={`translate(${d.x}, ${d.y})`}>
             <image
               transform={`scale(1.1)rotate(${rand()})`}
-              href={`img/food/${card[i]}.svg`}
+              href={`img/${category}/${card[i]}.svg`}
               title={card[i]}
               x={-d.size / 2}
               y={-d.size / 2}
