@@ -3,10 +3,24 @@ import React from 'react'
 import Card from './Card'
 import Header from './Header'
 
+import data from '../data'
+import make_deck from '../spot-it'
+import { shuffle } from '../util'
+
+const init_cat = 'food'
+const categories = Object.keys(data)
+const deck = k => shuffle(make_deck(7, shuffle(data[k])))
+
 class App extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { idx: 0, correct: 0, wrong: 0 }
+    this.state = {
+      category: init_cat,
+      deck: deck(init_cat),
+      idx: 0,
+      correct: 0,
+      wrong: 0
+    }
     this.handleChange = this.handleChange.bind(this)
     this.nextPair = this.nextPair.bind(this)
   }
@@ -22,9 +36,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { deck, card } = this.props
-    const { idx, correct, wrong } = this.state
-
+    const { deck, idx, correct, wrong } = this.state
     const [c1, c2] = [deck[idx], deck[idx + 1]]
 
     return (
@@ -33,10 +45,10 @@ class App extends React.Component {
         <div className='p2 container'>
           <div className='clearfix mb2 mx1'>
             <div className='col col-6 md-col-4 px1'>
-              <Card card={card} things={c1} />
+              <Card card={c1} />
             </div>
             <div className='col col-6 md-col-4 px1'>
-              <Card card={card} things={c2} />
+              <Card card={c2} />
             </div>
           </div>
           <div className='mb2'>
