@@ -3,25 +3,25 @@ import React from 'react'
 import Card from './Card'
 import CategoryNav from './CategoryNav'
 import Header from './Header'
+import Timer from './Timer'
 
-import data from '../data'
+import { categories, data } from '../data'
 import make_deck from '../spot-it'
 import { shuffle } from '../util'
 
-const initial_category = 'food'
-const categories = Object.keys(data)
-const deck = k => shuffle(make_deck(7, shuffle(data[k])))
+const new_game = category => ({
+  category,
+  deck: shuffle(make_deck(7, shuffle(data[category]))),
+  idx: 0,
+  correct: 0,
+  wrong: 0,
+  began: Date.now(),
+})
 
 class App extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      category: initial_category,
-      deck: deck(initial_category),
-      idx: 0,
-      correct: 0,
-      wrong: 0
-    }
+    this.state = { ...new_game('food') }
     this.changeCategory = this.changeCategory.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.nextPair = this.nextPair.bind(this)
@@ -29,14 +29,7 @@ class App extends React.Component {
 
   changeCategory(c) {
     if (c === this.state.category) return
-
-    this.setState({
-      category: c,
-      deck: deck(c),
-      idx: 0,
-      correct: 0,
-      wrong: 0,
-    })
+    this.setState({ ...new_game(c) })
   }
 
   handleChange(e) {
@@ -50,7 +43,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { category, deck, idx, correct, wrong } = this.state
+    const { category, deck, idx, correct, wrong, began } = this.state
     const [card1, card2] = [deck[idx], deck[idx + 1]]
 
     return (
@@ -62,6 +55,7 @@ class App extends React.Component {
             selected={category}
             onClick={this.changeCategory}
           />
+          <Timer began={began} stop={idx >= 20} />
           <div className='clearfix mb2 mx1'>
             <div className='col col-6 md-col-4 px1'>
               <Card card={card1} category={category} />

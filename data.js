@@ -670,4 +670,14 @@ const travel = [
   'checkered_flag'
 ]
 
-export default { people, nature, food, activity, travel }
+const data = { people, nature, food, activity, travel }
+
+const categories = [
+  { key: 'people', name: 'Smileys & People', img: 'heart_eyes' },
+  { key: 'nature', name: 'Animals & Nature', img: 'bee' },
+  { key: 'food', name: 'Food & Drink', img: 'apple' },
+  { key: 'activity', name: 'Activity', img: 'golf' },
+  { key: 'travel', name: 'Travel & Places', img: 'airplane' },
+]
+
+export { categories, data }
