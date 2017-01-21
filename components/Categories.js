@@ -1,6 +1,7 @@
 import React from 'react'
 
-const CategoryNavItem = ({ category, selected, onClick }) => {
+
+const CategoryItem = ({ category, selected, onClick }) => {
   const { key, name, img } = category
   const _onClick = () => onClick(key)
 
@@ -16,12 +17,12 @@ const CategoryNavItem = ({ category, selected, onClick }) => {
   )
 }
 
-const CategoryNav = ({ categories, ...rest }) => (
+const Categories = ({ categories, ...rest }) => (
   <div className='mb2'>
     {categories.map(c =>
-      <CategoryNavItem key={c.key} category={c} {...rest} />
+      <CategoryItem key={c.key} category={c} {...rest} />
     )}
   </div>
 )
 
-export default CategoryNav
+export default Categories

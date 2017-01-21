@@ -1,13 +1,14 @@
 import React from 'react'
 
-import Card from './Card'
-import CategoryNav from './CategoryNav'
+import Cards from './Cards'
+import Categories from './Categories'
 import Header from './Header'
 import Timer from './Timer'
 
-import { categories, data } from '../data'
+import { categories, data, card_config } from '../data'
 import make_deck from '../spot-it'
-import { shuffle } from '../util'
+import { get_match, shuffle } from '../util'
+
 
 const new_game = category => ({
   category,
@@ -23,7 +24,7 @@ class App extends React.Component {
     super(props)
     this.state = { ...new_game('food') }
     this.changeCategory = this.changeCategory.bind(this)
-    this.handleChange = this.handleChange.bind(this)
+    this.clickCard = this.clickCard.bind(this)
     this.nextPair = this.nextPair.bind(this)
   }
 
@@ -32,9 +33,8 @@ class App extends React.Component {
     this.setState({ ...new_game(c) })
   }
 
-  handleChange(e) {
-    const { name, value } = e.target
-    this.setState({ [name]: value })
+  clickCard(selected, answer) {
+    console.log(selected, answer)
   }
 
   nextPair() {
@@ -45,25 +45,28 @@ class App extends React.Component {
   render() {
     const { category, deck, idx, correct, wrong, began } = this.state
     const [card1, card2] = [deck[idx], deck[idx + 1]]
+    const match = get_match(card1, card2)
 
     return (
       <div>
         <Header />
         <div className='p2 container'>
-          <CategoryNav
+          <Categories
             categories={categories}
             selected={category}
             onClick={this.changeCategory}
           />
-          <Timer began={began} stop={idx >= 20} />
-          <div className='clearfix mb2 mx1'>
-            <div className='col col-6 md-col-4 px1'>
-              <Card card={card1} category={category} />
-            </div>
-            <div className='col col-6 md-col-4 px1'>
-              <Card card={card2} category={category} />
-            </div>
-          </div>
+          <Timer
+            began={began}
+            stop={idx >= 5}
+          />
+          <Cards
+            cards={[card1, card2]}
+            match={match}
+            card_config={card_config}
+            category={category}
+            onClick={this.clickCard}
+          />
           <div className='mb2'>
             <h3>deck index: {idx}</h3>
             {[card1, card2].map((d, i) => (

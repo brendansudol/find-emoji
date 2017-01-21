@@ -15,3 +15,7 @@ export const shuffle = arr => {
 
   return arr
 }
+
+export const get_match = (a, b) => (
+  a.filter(item => (b.indexOf(item) > -1))[0]
+)

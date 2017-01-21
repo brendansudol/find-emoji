@@ -680,4 +680,18 @@ const categories = [
   { key: 'travel', name: 'Travel & Places', img: 'airplane' },
 ]
 
-export { categories, data }
+const card_config = {
+  size: 400,
+  positions: [
+    {"x":140.16,"y":200.3,"r":31.77,"size":44.92},
+    {"x":316,"y":249.86,"r":73.36,"size":103.74},
+    {"x":189.51,"y":302.19,"r":63.53,"size":89.85},
+    {"x":68.64,"y":146.07,"r":58,"size":82.02},
+    {"x":74.86,"y":261.89,"r":58,"size":82.02},
+    {"x":279.96,"y":107.64,"r":73.36,"size":103.74},
+    {"x":212.93,"y":200.3,"r":41.01,"size":58},
+    {"x":166.71,"y":132.55,"r":41.01,"size":58},
+  ],
+}
+
+export { categories, data, card_config }
