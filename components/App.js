@@ -2,7 +2,6 @@ import React from 'react'
 
 import Cards from './Cards'
 import Categories from './Categories'
-import Header from './Header'
 import Timer from './Timer'
 
 import { categories, data, card_config } from '../data'
@@ -48,39 +47,30 @@ class App extends React.Component {
     const match = get_match(card1, card2)
 
     return (
-      <div>
-        <Header />
-        <div className='p2 container'>
-          <Categories
-            categories={categories}
-            selected={category}
-            onClick={this.changeCategory}
-          />
-          <Timer
-            began={began}
-            stop={idx >= 5}
-          />
-          <Cards
-            cards={[card1, card2]}
-            match={match}
-            card_config={card_config}
-            category={category}
-            onClick={this.clickCard}
-          />
-          <div className='mb2'>
-            <h3>deck index: {idx}</h3>
-            {[card1, card2].map((d, i) => (
-              <div key={i} className='h5'>{d.join(', ')}</div>
-            ))}
-          </div>
-          <button
-            type='button'
-            className='btn btn-primary'
-            onClick={this.nextPair}
-          >
-            Next pair
-          </button>
-        </div>
+      <div className='p2 container'>
+        <Categories
+          categories={categories}
+          selected={category}
+          onClick={this.changeCategory}
+        />
+        <Timer
+          began={began}
+          stop={idx >= 5}
+        />
+        <Cards
+          cards={[card1, card2]}
+          match={match}
+          card_config={card_config}
+          category={category}
+          onClick={this.clickCard}
+        />
+        <button
+          type='button'
+          className='btn btn-primary'
+          onClick={this.nextPair}
+        >
+          Next pair
+        </button>
       </div>
     )
   }
