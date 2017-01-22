@@ -1,17 +1,13 @@
 import React from 'react'
 
-import { rand, shuffle } from '../util'
 
-
-const CardImage = ({
-  pos, item, match, guessed, category, onClick
-}) => {
+const CardImage = ({ pos, item, rand, match, category, onClick }) => {
   const _onClick = () => onClick(item, match)
 
   return (
     <g transform={`translate(${pos.x}, ${pos.y})`}>
       <image
-        transform={`scale(1.1)rotate(${rand()})`}
+        transform={`scale(1.1)rotate(${-rand})`}
         href={`img/${category}/${item}.svg`}
         title={item}
         x={-pos.size / 2}
@@ -24,9 +20,8 @@ const CardImage = ({
   )
 }
 
-const Card = ({ card, card_config, ...rest }) => {
+const Card = ({ card, card_config, rand, ...rest }) => {
   const { size, positions } = card_config
-  shuffle(card)
 
   return (
     <svg
@@ -36,9 +31,9 @@ const Card = ({ card, card_config, ...rest }) => {
       viewBox={`0 0 ${size} ${size}`}
       style={{ width: '100%', height: '100%' }}
     >
-      <g transform={`rotate(${rand()}, ${size / 2}, ${size / 2})`}>
+      <g transform={`rotate(${rand}, ${size / 2}, ${size / 2})`}>
         {positions.map((d, i) =>
-          <CardImage key={i} pos={d} item={card[i]} {...rest} />
+          <CardImage key={i} pos={d} item={card[i]} rand={rand} {...rest} />
         )}
       </g>
     </svg>
