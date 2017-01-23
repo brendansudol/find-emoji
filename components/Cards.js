@@ -1,15 +1,27 @@
 import React from 'react'
 
 
-const CardImage = ({ pos, item, rand, match, category, onClick }) => {
+const CardImage = ({ pos, item, match, rand, guessed, category, onClick }) => {
   const _onClick = () => onClick(item, match)
 
   return (
     <g transform={`translate(${pos.x}, ${pos.y})`}>
+      {guessed && item === match && (
+        <rect
+          transform={`scale(1.15)rotate(${-rand})`}
+          x={-pos.size / 2}
+          y={-pos.size / 2}
+          width={pos.size}
+          height={pos.size}
+          fill='none'
+          stroke='limegreen'
+          strokeWidth='2'
+        />
+      )}
       <image
         transform={`scale(1.1)rotate(${-rand})`}
         href={`img/${category}/${item}.svg`}
-        title={item}
+        alt={item}
         x={-pos.size / 2}
         y={-pos.size / 2}
         width={pos.size}

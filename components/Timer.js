@@ -13,7 +13,7 @@ class Timer extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (!this.props.stop && nextProps.stop) this.stop()
+    if (!this.props.finished && nextProps.finished) this.stop()
     if (this.props.began !== nextProps.began) this.start()
   }
 
