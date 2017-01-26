@@ -37,7 +37,7 @@ const Card = ({ card, card_config, rand, ...rest }) => {
 
   return (
     <svg
-      className='align-middle border circle'
+      className='align-middle circle border'
       width={size}
       height={size}
       viewBox={`0 0 ${size} ${size}`}
@@ -53,12 +53,15 @@ const Card = ({ card, card_config, rand, ...rest }) => {
 }
 
 const Cards = ({ cards, ...rest }) => (
-  <div className='clearfix mb2 mx1'>
-    {cards.map((c, i) => (
-      <div key={i} className='col col-6 md-col-4 px1'>
-        <Card card={c} {...rest} />
-      </div>
-    ))}
+  <div className='mb3'>
+    <div className='mb2 bold'>Click the only ✨emoji✨ that's on both cards:</div>
+    <div className='clearfix mx1'>
+      {cards.map((c, i) => (
+        <div key={i} className='col col-6 px1'>
+          <Card card={c} {...rest} />
+        </div>
+      ))}
+    </div>
   </div>
 )
 

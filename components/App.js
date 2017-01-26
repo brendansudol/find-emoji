@@ -2,6 +2,7 @@ import React from 'react'
 
 import Cards from './Cards'
 import Categories from './Categories'
+import Stat from './Stat'
 import Timer from './Timer'
 
 import { categories, data, card_config } from '../data'
@@ -26,6 +27,7 @@ const new_game = category => ({
   guessed: false,
   finished: false,
 })
+
 
 class App extends React.Component {
   constructor(props) {
@@ -76,11 +78,6 @@ class App extends React.Component {
           selected={category}
           onClick={this.changeCategory}
         />
-        <Timer
-          began={began}
-          finished={finished}
-        />
-        <div>Correct: {correct}, Wrong: {wrong}, Remaining: {remaining}</div>
         <Cards
           cards={[card1, card2]}
           match={match}
@@ -90,6 +87,21 @@ class App extends React.Component {
           category={category}
           onClick={this.clickCard}
         />
+        <div className='clearfix center'>
+          <div className='col col-6 sm-col-3 mb2'>
+            <Timer began={began} finished={finished} />
+          </div>
+          <div className='col col-6 sm-col-3 mb2'>
+            <Stat label='Remaining' value={remaining} />
+          </div>
+          <div className='col col-6 sm-col-3 mb2'>
+            <Stat label='Correct' value={correct} />
+          </div>
+          <div className='col col-6 sm-col-3 mb2'>
+            <Stat label='Wrong' value={wrong} />
+          </div>
+        </div>
+
         {finished && <h2>All done!</h2>}
       </div>
     )

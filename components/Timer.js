@@ -1,5 +1,7 @@
 import React from 'react'
 
+import Stat from './Stat'
+
 
 class Timer extends React.Component {
   constructor(props) {
@@ -36,7 +38,7 @@ class Timer extends React.Component {
     const { began } = this.props
     const elapsed = (Math.max(0, (latest - began)) / 1000).toFixed(1)
 
-    return <div>Timer: {elapsed} seconds</div>
+    return <Stat label='Timer' value={elapsed} />
   }
 }
 

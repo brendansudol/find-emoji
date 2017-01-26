@@ -8,7 +8,7 @@ const CategoryItem = ({ category, selected, onClick }) => {
   return (
     <button
       type='button'
-      className={`mr1 btn btn-outline ${key !== selected ? 'regular' : ''}`}
+      className={`mb1 mr1 btn btn-outline px1 py0 h6 ${key !== selected ? 'regular' : ''}`}
       onClick={_onClick}
     >
       <img src={`img/${key}/${img}.svg`} width='25' className='mr1 align-middle' />
@@ -18,7 +18,8 @@ const CategoryItem = ({ category, selected, onClick }) => {
 }
 
 const Categories = ({ categories, ...rest }) => (
-  <div className='mb2'>
+  <div className='mb3'>
+    <div className='mb1 bold'>Select a category:</div>
     {categories.map(c =>
       <CategoryItem key={c.key} category={c} {...rest} />
     )}
