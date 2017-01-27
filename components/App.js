@@ -2,6 +2,7 @@ import React from 'react'
 
 import Cards from './Cards'
 import Categories from './Categories'
+import Header from './Header'
 import Stat from './Stat'
 import Timer from './Timer'
 
@@ -73,6 +74,7 @@ class App extends React.Component {
 
     return (
       <div className='p2 container'>
+        <Header />
         <Categories
           categories={categories}
           selected={category}
@@ -101,6 +103,8 @@ class App extends React.Component {
             <Stat label='Wrong' value={wrong} />
           </div>
         </div>
+
+        <hr />
 
         {finished && <h2>All done!</h2>}
       </div>

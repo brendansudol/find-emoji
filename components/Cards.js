@@ -54,8 +54,8 @@ const Card = ({ card, card_config, rand, ...rest }) => {
 
 const Cards = ({ cards, ...rest }) => (
   <div className='mb3'>
-    <div className='mb2 bold'>Click the only ✨emoji✨ that's on both cards:</div>
-    <div className='clearfix mx1'>
+    <h3>Click the only emoji on both cards</h3>
+    <div className='clearfix mx1 mt2'>
       {cards.map((c, i) => (
         <div key={i} className='col col-6 px1'>
           <Card card={c} {...rest} />
