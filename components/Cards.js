@@ -52,11 +52,11 @@ const Card = ({ card, card_config, rand, ...rest }) => {
   )
 }
 
-const Cards = ({ cards, ...rest }) => (
+const Cards = ({ cards, rand, ...rest }) => (
   <div className='clearfix mx1 mb3'>
     {cards.map((c, i) => (
       <div key={i} className='col col-6 px1'>
-        <Card card={c} {...rest} />
+        <Card card={c} rand={rand[i]} {...rest} />
       </div>
     ))}
   </div>

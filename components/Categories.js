@@ -2,18 +2,11 @@ import React from 'react'
 
 
 const CategoryItem = ({ category, selected, onClick }) => {
-  const { key, name, img } = category
+  const { key, name } = category
   const _onClick = () => onClick(key)
+  const cls = `mb1 mr1 btn btn-outline px1 py0 h5 ${key !== selected ? 'regular' : ''}`
 
-  return (
-    <button
-      type='button'
-      className={`mb1 mr1 btn btn-outline px1 py0 h5 ${key !== selected ? 'regular' : ''}`}
-      onClick={_onClick}
-    >
-      {name}
-    </button>
-  )
+  return <button type='button' className={cls} onClick={_onClick}>{name}</button>
 }
 
 const Categories = ({ categories, ...rest }) => (

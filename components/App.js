@@ -7,13 +7,13 @@ import Header from './Header'
 import Results from './Results'
 import Scoreboard from './Scoreboard'
 
-import { categories, data, card_config } from '../data'
+import { data } from '../data'
 import make_deck from '../spot-it'
 import { get_match, shuffle } from '../util'
 
 
 const SHOW_ANSWER_PAUSE_MS = 600
-const ROUNDS = 5
+const ROUNDS = 10
 
 const rando_deck = pics => (
   shuffle(make_deck(7, shuffle(pics)).map(c => shuffle(c))).slice(0, ROUNDS * 2)
@@ -33,7 +33,7 @@ const new_game = category => ({
 class App extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { ...new_game('food') }
+    this.state = { ...new_game('people') }
     this.changeCategory = this.changeCategory.bind(this)
     this.clickCard = this.clickCard.bind(this)
     this.nextPair = this.nextPair.bind(this)
@@ -66,7 +66,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { rand } = this.props
+    const { card_config, categories, rand } = this.props
     const { category, deck, idx, correct, wrong, began, guessed, finished } = this.state
     const remaining = ROUNDS - correct - wrong
     const [card1, card2] = [deck[idx], deck[idx + 1]]
@@ -90,7 +90,7 @@ class App extends React.Component {
           onClick: this.clickCard,
         }} />
         <Scoreboard {...{ began, finished, remaining, correct, wrong }} />
-        {finished && <Results />}
+        {finished && <Results {...{ correct, wrong }} />}
         <Footer />
       </div>
     )
