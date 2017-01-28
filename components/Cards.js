@@ -20,7 +20,7 @@ const CardImage = ({ pos, item, match, rand, guessed, category, onClick }) => {
       )}
       <image
         transform={`scale(1.1)rotate(${-rand})`}
-        href={`img/${category}/${item}.svg`}
+        xlinkHref={`img/${category}/${item}.svg`}
         alt={item}
         x={-pos.size / 2}
         y={-pos.size / 2}
@@ -39,7 +39,7 @@ const Card = ({ card, card_config, rand, ...rest }) => {
     <svg
       xmlns='http://www.w3.org/2000/svg'
       version='1.1'
-      className='relative align-middle circle border'
+      className='align-middle circle border'
       width={size}
       height={size}
       viewBox={`0 0 ${size} ${size}`}
