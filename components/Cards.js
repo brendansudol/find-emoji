@@ -37,7 +37,9 @@ const Card = ({ card, card_config, rand, ...rest }) => {
 
   return (
     <svg
-      className='align-middle circle border'
+      xmlns='http://www.w3.org/2000/svg'
+      version='1.1'
+      className='relative align-middle circle border'
       width={size}
       height={size}
       viewBox={`0 0 ${size} ${size}`}
