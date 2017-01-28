@@ -18,7 +18,6 @@ const CategoryItem = ({ category, selected, onClick }) => {
 
 const Categories = ({ categories, ...rest }) => (
   <div className='mb3'>
-    <h3>Select a category</h3>
     {categories.map(c =>
       <CategoryItem key={c.key} category={c} {...rest} />
     )}

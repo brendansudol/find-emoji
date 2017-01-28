@@ -1,8 +1,6 @@
 node_modules
 venv
 
-bundle.js
-
 .DS_Store
 .env
 npm-debug.log

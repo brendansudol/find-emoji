@@ -2,9 +2,10 @@ import React from 'react'
 
 import Cards from './Cards'
 import Categories from './Categories'
+import Footer from './Footer'
 import Header from './Header'
-import Stat from './Stat'
-import Timer from './Timer'
+import Results from './Results'
+import Scoreboard from './Scoreboard'
 
 import { categories, data, card_config } from '../data'
 import make_deck from '../spot-it'
@@ -28,7 +29,6 @@ const new_game = category => ({
   guessed: false,
   finished: false,
 })
-
 
 class App extends React.Component {
   constructor(props) {
@@ -75,38 +75,23 @@ class App extends React.Component {
     return (
       <div className='p2 container'>
         <Header />
-        <Categories
-          categories={categories}
-          selected={category}
-          onClick={this.changeCategory}
-        />
-        <Cards
-          cards={[card1, card2]}
-          match={match}
-          rand={rand}
-          guessed={guessed}
-          card_config={card_config}
-          category={category}
-          onClick={this.clickCard}
-        />
-        <div className='clearfix center'>
-          <div className='col col-6 sm-col-3 mb2'>
-            <Timer began={began} finished={finished} />
-          </div>
-          <div className='col col-6 sm-col-3 mb2'>
-            <Stat label='Remaining' value={remaining} />
-          </div>
-          <div className='col col-6 sm-col-3 mb2'>
-            <Stat label='Correct' value={correct} />
-          </div>
-          <div className='col col-6 sm-col-3 mb2'>
-            <Stat label='Wrong' value={wrong} />
-          </div>
-        </div>
-
-        <hr />
-
-        {finished && <h2>All done!</h2>}
+        <Categories {...{
+          categories,
+          selected: category,
+          onClick: this.changeCategory
+        }} />
+        <Cards {...{
+          match,
+          rand,
+          guessed,
+          card_config,
+          category,
+          cards: [card1, card2],
+          onClick: this.clickCard,
+        }} />
+        <Scoreboard {...{ began, finished, remaining, correct, wrong }} />
+        {finished && <Results />}
+        <Footer />
       </div>
     )
   }

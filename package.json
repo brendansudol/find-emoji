@@ -8,9 +8,8 @@
     "build": "NODE_ENV=production webpack -p"
   },
   "dependencies": {
-    "axios": "^0.15.3",
-    "react": "^15.4.1",
-    "react-dom": "^15.4.1"
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
