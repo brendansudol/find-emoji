@@ -1,5 +1,7 @@
 export const rand = () => ~~(Math.random() * 360)
 
+export const rand_arr = n => [...Array(n)].map(_ => rand())
+
 export const shuffle = arr => {
   let counter = arr.length
 

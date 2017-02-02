@@ -15,13 +15,13 @@ import { get_match, shuffle } from '../util'
 const SHOW_ANSWER_PAUSE_MS = 600
 const ROUNDS = 10
 
-const rando_deck = pics => (
+const random_deck = pics => (
   shuffle(make_deck(7, shuffle(pics)).map(c => shuffle(c))).slice(0, ROUNDS * 2)
 )
 
 const new_game = category => ({
   category,
-  deck: rando_deck(data[category]),
+  deck: random_deck(data[category]),
   idx: 0,
   correct: 0,
   wrong: 0,
@@ -66,7 +66,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { card_config, categories, rand } = this.props
+    const { card_config, categories, random } = this.props
     const { category, deck, idx, correct, wrong, began, guessed, finished } = this.state
     const remaining = ROUNDS - correct - wrong
     const [card1, card2] = [deck[idx], deck[idx + 1]]
@@ -82,7 +82,7 @@ class App extends React.Component {
         }} />
         <Cards {...{
           match,
-          rand,
+          random,
           guessed,
           card_config,
           category,

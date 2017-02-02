@@ -8,7 +8,7 @@ const CardImage = ({ pos, item, match, rand, guessed, category, onClick }) => {
     <g transform={`translate(${pos.x}, ${pos.y})`}>
       {guessed && item === match && (
         <rect
-          transform={`scale(1.15)rotate(${-rand})`}
+          transform={`scale(1.15)rotate(${rand})`}
           x={-pos.size / 2}
           y={-pos.size / 2}
           width={pos.size}
@@ -19,7 +19,7 @@ const CardImage = ({ pos, item, match, rand, guessed, category, onClick }) => {
         />
       )}
       <image
-        transform={`scale(1.1)rotate(${-rand})`}
+        transform={`scale(1.1)rotate(${rand})`}
         xlinkHref={`img/${category}/${item}.svg`}
         alt={item}
         x={-pos.size / 2}
@@ -32,8 +32,9 @@ const CardImage = ({ pos, item, match, rand, guessed, category, onClick }) => {
   )
 }
 
-const Card = ({ card, card_config, rand, ...rest }) => {
+const Card = ({ card, card_config, idx, random, ...rest }) => {
   const { size, positions } = card_config
+  const { cards: rc, imgs: ri } = random
 
   return (
     <svg
@@ -45,20 +46,20 @@ const Card = ({ card, card_config, rand, ...rest }) => {
       viewBox={`0 0 ${size} ${size}`}
       style={{ width: '100%', height: '100%' }}
     >
-      <g transform={`rotate(${rand}, ${size / 2}, ${size / 2})`}>
+      <g transform={`rotate(${rc[idx]}, ${size / 2}, ${size / 2})`}>
         {positions.map((d, i) =>
-          <CardImage key={i} pos={d} item={card[i]} rand={rand} {...rest} />
+          <CardImage key={i} pos={d} item={card[i]} rand={ri[i]} {...rest} />
         )}
       </g>
     </svg>
   )
 }
 
-const Cards = ({ cards, rand, ...rest }) => (
+const Cards = ({ cards, ...rest }) => (
   <div className='clearfix mx1 mb3'>
     {cards.map((c, i) => (
       <div key={i} className='col col-6 px1'>
-        <Card card={c} rand={rand[i]} {...rest} />
+        <Card card={c} idx={i} {...rest} />
       </div>
     ))}
   </div>

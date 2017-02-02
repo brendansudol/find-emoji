@@ -4,8 +4,10 @@ import ReactDOM from 'react-dom'
 import App from './components/App'
 
 import { card_config, categories } from './data'
-import { rand } from './util'
+import { rand_arr } from './util'
 
+const random = { cards: rand_arr(2), imgs: rand_arr(8) } 
+const props = { card_config, categories, random }
 const div = document.getElementById('app')
-const props = { card_config, categories, rand: [rand(), rand()] }
+
 ReactDOM.render(<App {...props} />, div)
